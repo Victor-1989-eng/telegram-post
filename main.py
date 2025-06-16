@@ -1,3 +1,5 @@
+import sys
+print("👀 Используем Python:", sys.version)
 import os
 import time
 import requests
@@ -44,4 +46,3 @@ while True:
         send_post()
         time.sleep(60)  # чтобы не отправить дважды
     time.sleep(20)  # проверяем каждые 20 сек
-    
