@@ -1,7 +1,11 @@
-# render.yaml
 services:
   - type: web
-    name: telegram-post-web
+    name: telegram-post-bot
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python main.py"
+    envVars:
+      - key: TELEGRAM_TOKEN
+        value: your_token_here
+      - key: CHANNEL_ID
+        value: "@Arxiv_tain"
