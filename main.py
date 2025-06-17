@@ -1,7 +1,6 @@
-# main.py
 import os
 import requests
-from flask import Flask, request
+from flask import Flask
 from telegram import Bot
 from telegram.error import TelegramError
 
@@ -11,6 +10,7 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHANNEL_ID = os.getenv("CHANNEL_ID")
 
 bot = Bot(token=TELEGRAM_TOKEN)
+
 
 @app.route("/send", methods=["GET"])
 def send_post():
@@ -31,9 +31,9 @@ def send_post():
             caption=text,
             parse_mode="HTML"
         )
-        return "✅ Пост отправлен!", 200
+        return "✅ Пост успешно отправлен!"
 
     except TelegramError as e:
-        return f"❌ Ошибка Telegram: {e}", 500
+        return f"❌ Ошибка Telegram: {e}"
     except Exception as ex:
-        return f"⚠️ Ошибка: {ex}", 500
+        return f"⚠️ Общая ошибка: {ex}"
