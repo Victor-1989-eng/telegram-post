@@ -37,3 +37,23 @@ def send_post():
         return f"❌ Ошибка Telegram: {e}"
     except Exception as ex:
         return f"⚠️ Общая ошибка: {ex}"
+import os
+from flask import Flask
+from telegram import Bot
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+CHANNEL_ID = os.getenv("CHANNEL_ID")
+
+bot = Bot(token=TELEGRAM_TOKEN)
+
+# Инициализируем Flask-сервер
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Бот работает!"
+
+# Запуск Flask, чтобы Render видел порт
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Render передаёт PORT
+    app.run(host="0.0.0.0", port=port)
